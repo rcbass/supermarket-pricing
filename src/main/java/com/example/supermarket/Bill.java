@@ -9,13 +9,15 @@ public class Bill {
     private final BigDecimal     price;
     private final BigDecimal     priceBeforeDiscounts;
     private final List<Discount> discounts;
+    private final BigDecimal     totalDiscount;
 
     public Bill(final Basket basket, final BigDecimal price, final BigDecimal priceBeforeDiscounts,
-            final List<Discount> discounts) {
+            final List<Discount> discounts, final BigDecimal totalDiscount) {
         this.basket = basket;
         this.price = price;
         this.priceBeforeDiscounts = priceBeforeDiscounts;
         this.discounts = discounts;
+        this.totalDiscount = totalDiscount;
     }
 
     public Basket getBasket() {
@@ -32,6 +34,10 @@ public class Bill {
 
     public List<Discount> getDiscounts() {
         return discounts;
+    }
+
+    public BigDecimal getTotalDiscount() {
+        return totalDiscount;
     }
 
 }
