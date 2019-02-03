@@ -27,8 +27,7 @@ public class BasketTest {
 
     @Test
     public void whenExistingItemIsAdded_ThenQuantityIsIncremented() {
-        basket.addItem("Banana");
-        basket.addItem("Banana");
+        basket.addItem("Banana", 2);
         int quantity = basket.getItems()
                              .get("Banana");
         assertEquals(3, quantity);

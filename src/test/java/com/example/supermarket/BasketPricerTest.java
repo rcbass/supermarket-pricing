@@ -36,8 +36,7 @@ public class BasketPricerTest {
         basketPricer = new BasketPricer(items, offers);
 
         basket = new Basket();
-        basket.addItem("Bran Flakes");
-        basket.addItem("Bran Flakes");
+        basket.addItem("Bran Flakes", 2);
         basket.addItem("Orange Juice");
         basket.addWeightedItem("Onions", BigDecimal.valueOf(0.6));
         basket.addWeightedItem("Potatoes", BigDecimal.valueOf(1.5));

@@ -33,16 +33,13 @@ public class MoreForThePriceOfLessOfferTest {
 
     @Test
     public void whenThereAreNotEnoughItemsInTheBasket_ThenThereAreNoDiscounts() {
-        basket.addItem("Beans");
-        basket.addItem("Beans");
+        basket.addItem("Beans", 2);
         assertEquals(emptyList(), offer.apply(basket));
     }
 
     @Test
     public void whenAmountOfItemsIsEqualToMoreQuantity_ThenThereIsOneDiscount() {
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
+        basket.addItem("Beans", 3);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(1, discounts.size());
@@ -54,12 +51,7 @@ public class MoreForThePriceOfLessOfferTest {
 
     @Test
     public void whenAmountOfItemsIsAMultipleOfMoreQuantity_ThenThereAreMultipleDiscounts() {
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
+        basket.addItem("Beans", 6);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(2, discounts.size());
@@ -71,11 +63,7 @@ public class MoreForThePriceOfLessOfferTest {
 
     @Test
     public void whenAmountOfItemsIsNotAMultipleOfMoreQuantity_ThenTheCorrectNumberOfDiscountsAreApplied() {
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
-        basket.addItem("Beans");
+        basket.addItem("Beans", 5);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(1, discounts.size());

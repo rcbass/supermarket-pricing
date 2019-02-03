@@ -39,8 +39,7 @@ public class SetPriceItemOfferTest {
 
     @Test
     public void whenAmountOfItemsIsEqualToOfferQuantity_ThenThereIsOneDiscount() {
-        basket.addItem("Coke");
-        basket.addItem("Coke");
+        basket.addItem("Coke", 2);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(1, discounts.size());
@@ -52,10 +51,7 @@ public class SetPriceItemOfferTest {
 
     @Test
     public void whenAmountOfItemsIsAMultipleOfOfferQuantity_ThenThereAreMultipleDiscounts() {
-        basket.addItem("Coke");
-        basket.addItem("Coke");
-        basket.addItem("Coke");
-        basket.addItem("Coke");
+        basket.addItem("Coke", 4);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(2, discounts.size());
@@ -67,9 +63,7 @@ public class SetPriceItemOfferTest {
 
     @Test
     public void whenAmountOfItemsIsNotAMultipleOfOfferQuantity_ThenTheCorrectNumberOfDiscountsAreApplied() {
-        basket.addItem("Coke");
-        basket.addItem("Coke");
-        basket.addItem("Coke");
+        basket.addItem("Coke", 3);
 
         List<Discount> discounts = offer.apply(basket);
         assertEquals(1, discounts.size());
