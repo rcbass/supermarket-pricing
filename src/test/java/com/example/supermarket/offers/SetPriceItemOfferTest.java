@@ -1,4 +1,4 @@
-package com.example.supermarket;
+package com.example.supermarket.offers;
 
 import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
@@ -6,6 +6,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import com.example.supermarket.Basket;
+import com.example.supermarket.Discount;
+import com.example.supermarket.Item;
+import com.example.supermarket.Items;
+import com.example.supermarket.offers.SetPriceItemOffer;
 
 public class SetPriceItemOfferTest {
 

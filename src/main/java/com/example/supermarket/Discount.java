@@ -1,6 +1,7 @@
 package com.example.supermarket;
 
 import java.math.BigDecimal;
+import com.example.supermarket.offers.Offer;
 
 /**
  * A discount is a saving made by the customer as a result of an {@link Offer} being applied.

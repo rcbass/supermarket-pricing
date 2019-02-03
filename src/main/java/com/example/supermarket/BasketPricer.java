@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map.Entry;
+import com.example.supermarket.offers.Offer;
 
 /**
  * A class responsible for producing a {@link Bill} for a {@link Basket}.

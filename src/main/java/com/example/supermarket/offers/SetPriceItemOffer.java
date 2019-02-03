@@ -1,8 +1,11 @@
-package com.example.supermarket;
+package com.example.supermarket.offers;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.supermarket.Basket;
+import com.example.supermarket.Discount;
+import com.example.supermarket.Items;
 
 /**
  * An offer where the customer pays a set price for a specific number of the same item.

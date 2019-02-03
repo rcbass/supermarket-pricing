@@ -1,6 +1,9 @@
-package com.example.supermarket;
+package com.example.supermarket.offers;
 
 import java.util.List;
+import com.example.supermarket.Basket;
+import com.example.supermarket.Discount;
+import com.example.supermarket.Items;
 
 /**
  * An offer saves the customer money if their basket meets certain criteria. For example,
