@@ -46,7 +46,8 @@ public class SetPriceItemOfferTest {
         Discount discount = discounts.get(0);
 
         assertEquals(offer, discount.getOffer());
-        assertEquals(BigDecimal.valueOf(0.6), discount.getAmount());
+        assertEquals(0, discount.getAmount()
+                                .compareTo(BigDecimal.valueOf(0.6)));
     }
 
     @Test
@@ -57,7 +58,8 @@ public class SetPriceItemOfferTest {
         assertEquals(2, discounts.size());
         for (Discount discount : discounts) {
             assertEquals(offer, discount.getOffer());
-            assertEquals(BigDecimal.valueOf(0.6), discount.getAmount());
+            assertEquals(0, discount.getAmount()
+                                    .compareTo(BigDecimal.valueOf(0.6)));
         }
     }
 
@@ -70,7 +72,8 @@ public class SetPriceItemOfferTest {
         Discount discount = discounts.get(0);
 
         assertEquals(offer, discount.getOffer());
-        assertEquals(BigDecimal.valueOf(0.6), discount.getAmount());
+        assertEquals(0, discount.getAmount()
+                                .compareTo(BigDecimal.valueOf(0.6)));
     }
 
 }

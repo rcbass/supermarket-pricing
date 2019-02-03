@@ -46,9 +46,15 @@ public class BasketPricerTest {
     public void itemsAreSummedCorrectly() {
         Bill bill = basketPricer.price(basket);
 
-        assertEquals(BigDecimal.valueOf(6.91), bill.getPrice());
-        assertEquals(BigDecimal.valueOf(6.91), bill.getPriceBeforeDiscounts());
-        assertEquals(BigDecimal.ZERO, bill.getTotalDiscount());
+        assertEquals(0, bill.getPrice()
+                            .compareTo(BigDecimal.valueOf(6.91)));
+
+        assertEquals(0, bill.getPriceBeforeDiscounts()
+                            .compareTo(BigDecimal.valueOf(6.91)));
+
+        assertEquals(0, bill.getTotalDiscount()
+                            .compareTo(BigDecimal.ZERO));
+
         assertEquals(emptyList(), bill.getDiscounts());
         assertEquals(basket, bill.getBasket());
     }
@@ -62,9 +68,15 @@ public class BasketPricerTest {
 
         Bill bill = basketPricer.price(basket);
 
-        assertEquals(BigDecimal.valueOf(6.21), bill.getPrice());
-        assertEquals(BigDecimal.valueOf(6.91), bill.getPriceBeforeDiscounts());
-        assertEquals(BigDecimal.valueOf(0.7), bill.getTotalDiscount());
+        assertEquals(0, bill.getPrice()
+                            .compareTo(BigDecimal.valueOf(6.21)));
+
+        assertEquals(0, bill.getPriceBeforeDiscounts()
+                            .compareTo(BigDecimal.valueOf(6.91)));
+
+        assertEquals(0, bill.getTotalDiscount()
+                            .compareTo(BigDecimal.valueOf(0.7)));
+
         assertEquals(discounts, bill.getDiscounts());
         assertEquals(basket, bill.getBasket());
     }
@@ -84,8 +96,12 @@ public class BasketPricerTest {
 
         Bill bill = basketPricer.price(basket);
 
-        assertEquals(BigDecimal.valueOf(4.01), bill.getPrice());
-        assertEquals(BigDecimal.valueOf(6.91), bill.getPriceBeforeDiscounts());
+        assertEquals(0, bill.getPrice()
+                            .compareTo(BigDecimal.valueOf(4.01)));
+
+        assertEquals(0, bill.getPriceBeforeDiscounts()
+                            .compareTo(BigDecimal.valueOf(6.91)));
+
         assertEquals(0, bill.getTotalDiscount()
                             .compareTo(BigDecimal.valueOf(2.9)));
 

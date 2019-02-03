@@ -38,7 +38,7 @@ public class BasketTest {
         basket.addWeightedItem("Onions", BigDecimal.valueOf(0.4));
         BigDecimal weight = basket.getWeightedItems()
                                   .get("Onions");
-        assertEquals(BigDecimal.valueOf(0.4), weight);
+        assertEquals(0, weight.compareTo(BigDecimal.valueOf(0.4)));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class BasketTest {
         basket.addWeightedItem("Potatoes", BigDecimal.valueOf(0.25));
         BigDecimal weight = basket.getWeightedItems()
                                   .get("Potatoes");
-        assertEquals(BigDecimal.valueOf(1.75), weight);
+        assertEquals(0, weight.compareTo(BigDecimal.valueOf(1.75)));
     }
 
 }
