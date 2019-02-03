@@ -20,7 +20,7 @@ public class BasketPricerTest {
     private List<Offer>  offers;
 
     @Mock
-    private Offer        offer;
+    private Offer        offer1, offer2;
 
     @Before
     public void setUp() {
@@ -55,10 +55,10 @@ public class BasketPricerTest {
 
     @Test
     public void discountsAreAppliedCorrectly() {
-        offers.add(offer);
+        offers.add(offer1);
         List<Discount> discounts = new ArrayList<>();
-        discounts.add(new Discount(offer, BigDecimal.valueOf(0.7)));
-        when(offer.apply(basket)).thenReturn(discounts);
+        discounts.add(new Discount(offer1, BigDecimal.valueOf(0.7)));
+        when(offer1.apply(basket)).thenReturn(discounts);
 
         Bill bill = basketPricer.price(basket);
 
@@ -70,12 +70,58 @@ public class BasketPricerTest {
     }
 
     @Test
-    public void pricesAreRoundedIfNecessary() {
+    public void multipleDiscountsAreAppliedCorrectly() {
+        offers.add(offer1);
+        List<Discount> offer1Discounts = new ArrayList<>();
+        offer1Discounts.add(new Discount(offer1, BigDecimal.valueOf(0.4)));
+        when(offer1.apply(basket)).thenReturn(offer1Discounts);
+
+        offers.add(offer2);
+        List<Discount> offer2Discounts = new ArrayList<>();
+        offer2Discounts.add(new Discount(offer2, BigDecimal.valueOf(1.25)));
+        offer2Discounts.add(new Discount(offer2, BigDecimal.valueOf(1.25)));
+        when(offer2.apply(basket)).thenReturn(offer2Discounts);
+
+        Bill bill = basketPricer.price(basket);
+
+        assertEquals(BigDecimal.valueOf(4.01), bill.getPrice());
+        assertEquals(BigDecimal.valueOf(6.91), bill.getPriceBeforeDiscounts());
+        assertEquals(0, bill.getTotalDiscount()
+                            .compareTo(BigDecimal.valueOf(2.9)));
+
+        List<Discount> allDiscounts = new ArrayList<>();
+        allDiscounts.addAll(offer1Discounts);
+        allDiscounts.addAll(offer2Discounts);
+        assertEquals(allDiscounts, bill.getDiscounts());
+
+        assertEquals(basket, bill.getBasket());
+    }
+
+    @Test
+    public void pricesAreRoundedUpWhenNecessary() {
         basket = new Basket();
         basket.addWeightedItem("Oranges", BigDecimal.valueOf(0.2));
 
+        // 0.398 -> 0.4
         assertEquals(0, basketPricer.sumWeightedItems(basket)
                                     .compareTo(BigDecimal.valueOf(0.4)));
+
+        basket = new Basket();
+        basket.addWeightedItem("Oranges", BigDecimal.valueOf(0.5));
+
+        // 0.995 -> 1
+        assertEquals(0, basketPricer.sumWeightedItems(basket)
+                                    .compareTo(BigDecimal.ONE));
+    }
+
+    @Test
+    public void pricesAreRoundedDownWhenNecessary() {
+        basket = new Basket();
+        basket.addWeightedItem("Oranges", BigDecimal.valueOf(0.6));
+
+        // 1.194 -> 1.19
+        assertEquals(0, basketPricer.sumWeightedItems(basket)
+                                    .compareTo(BigDecimal.valueOf(1.19)));
     }
 
 }
