@@ -6,16 +6,36 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map.Entry;
 
+/**
+ * A class responsible for producing a {@link Bill} for a {@link Basket}.
+ *
+ */
 public class BasketPricer {
 
     private final Items       items;
     private final List<Offer> offers;
 
+    /**
+     * Constructs a {@link BasketPricer} with the given details.
+     * 
+     * @param items
+     *            the items available for sale
+     * @param offers
+     *            a list of active offers
+     */
     public BasketPricer(final Items items, final List<Offer> offers) {
         this.items = items;
         this.offers = offers;
     }
 
+    /**
+     * Prices the given basket by producing a bill.
+     * 
+     * @param basket
+     *            a shopping basket
+     * 
+     * @return the bill
+     */
     public Bill price(final Basket basket) {
         BigDecimal itemsPrice = sumItems(basket);
         BigDecimal weightedItemsPrice = sumWeightedItems(basket);
